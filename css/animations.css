@@ -1,0 +1,90 @@
+/* =========================================================
+   animations.css — ลูกเล่นและแอนิเมชันทั้งหมด
+   อยากปิดลูกเล่นไหน ลบหรือใส่ /* */ ครอบส่วนนั้น
+   ========================================================= */
+
+/* ---------- 1) ข้อความหน้าแรกค่อยๆ ขึ้นมาตอนเปิดเว็บ ---------- */
+.hero-text > * { animation: hero-in 0.9s ease both; }
+.hero-text > *:nth-child(2) { animation-delay: 0.12s; }
+.hero-text > *:nth-child(3) { animation-delay: 0.24s; }
+.hero-text > *:nth-child(4) { animation-delay: 0.36s; }
+.hero-text > *:nth-child(5) { animation-delay: 0.48s; }
+.hero-text > *:nth-child(6) { animation-delay: 0.6s; }
+.facts { animation: hero-in 0.9s 0.5s ease both; }
+@keyframes hero-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+
+/* ---------- 2) สไลด์รูปหน้าแรก (ซูมช้าๆ แล้วเปลี่ยนรูป) ---------- */
+.hero-slides { overflow: hidden; }
+.hero-slides .slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.4s ease; }
+.hero-slides .slide.active { opacity: 1; animation: ken-burns 8s ease-out both; }
+@keyframes ken-burns { from { transform: scale(1.14); } to { transform: scale(1); } }
+.slide-dots { position: absolute; right: var(--pad); bottom: 16px; z-index: 2; display: flex; gap: 6px; }
+.slide-dots button { width: 40px; height: 28px; padding: 0; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; }
+.slide-dots button::before { content: ""; width: 100%; height: 5px; background: rgba(255,255,255,0.45); transition: background 0.3s; }
+.slide-dots button.active::before { background: var(--orange); }
+
+/* ---------- 3) ปรากฏตอนเลื่อนลงมาถึง ---------- */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ---------- 4) หัวเว็บหดลงและมีเงาตอนเลื่อน ---------- */
+.site-header { transition: box-shadow 0.3s ease; }
+.header-inner { transition: min-height 0.3s ease; }
+.brand img { transition: width 0.3s ease; }
+.site-header.scrolled { box-shadow: 0 6px 24px rgba(7, 28, 58, 0.14); }
+.site-header.scrolled .header-inner { min-height: 62px; }
+.site-header.scrolled .brand img { width: 46px; }
+
+/* ---------- 5) เส้นกลางถนนวิ่ง ---------- */
+.road::before {
+  background: linear-gradient(90deg, var(--orange) 0 56px, transparent 56px 100px) 0 0 / 100px 6px repeat-x;
+  animation: road-move 1.6s linear infinite;
+}
+@keyframes road-move { to { background-position: -100px 0; } }
+
+/* ---------- 6) การ์ดลอยขึ้นและรูปซูมตอนชี้เมาส์ ---------- */
+.card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(11, 42, 85, 0.16); }
+.card img { transition: transform 0.6s ease; }
+.card:hover img { transform: scale(1.06); }
+.btn { transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+.btn:hover { transform: translateY(-2px); }
+
+/* ---------- 7) กดรูปเพื่อดูรูปใหญ่ ---------- */
+.zoomable { cursor: zoom-in; }
+.lightbox { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px; padding: 24px; background: rgba(7, 28, 58, 0.94); }
+.lightbox.open { display: flex; animation: fade-in 0.25s ease; }
+.lightbox img { max-width: min(1200px, 100%); max-height: 80vh; border-radius: var(--radius); object-fit: contain; }
+.lightbox p { color: #E3EAF3; font-size: 16px; text-align: center; }
+.lightbox-close { position: absolute; top: 16px; right: 16px; width: 48px; height: 48px; border: 2px solid var(--white); background: transparent; color: var(--white); font-size: 26px; border-radius: 50%; cursor: pointer; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- 8) ปุ่มลอย โทร / WhatsApp / กลับขึ้นบน ---------- */
+.float-contact { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.float-contact a, .float-contact button { width: 52px; height: 52px; border-radius: 50%; border: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(7, 28, 58, 0.3); cursor: pointer; }
+.fc-phone { background: var(--orange); animation: pulse 2.2s ease-out infinite; }
+.fc-wa { background: #1FA855; }
+.to-top { background: var(--navy); opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s; }
+.to-top.show { opacity: 1; pointer-events: auto; transform: none; }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(242, 140, 40, 0.6); }
+  70% { box-shadow: 0 0 0 16px rgba(242, 140, 40, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(242, 140, 40, 0); }
+}
+
+/* ---------- 9) แถบชื่อลูกค้าเลื่อนอัตโนมัติ ---------- */
+.marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { flex-wrap: nowrap; width: max-content; animation: marquee 32s linear infinite; }
+.marquee-track li { white-space: nowrap; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- ปิดการเคลื่อนไหว ถ้าผู้ใช้ตั้งค่าเครื่องให้ลดการเคลื่อนไหว ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-text > *, .facts, .hero-slides .slide.active, .road::before, .fc-phone, .lightbox.open { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .card, .card img, .btn { transition: none; }
+  .card:hover, .card:hover img, .btn:hover { transform: none; }
+  .marquee { -webkit-mask-image: none; mask-image: none; }
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+}
