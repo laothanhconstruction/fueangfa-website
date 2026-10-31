@@ -25,7 +25,7 @@ var COUNT_SECONDS = 1.6;    // ตัวเลขวิ่งนานกี่�
       slides[current].classList.add('active');
       dots[current].classList.add('active');
     }
-    function start() { if (!reduce) { timer = setInterval(function () { show(current + 1); }, SLIDE_SECONDS * 1000); } }
+    function start() { timer = setInterval(function () { show(current + 1); }, SLIDE_SECONDS * 1000); }  // โหมดลดการเคลื่อนไหว: เปลี่ยนรูปแบบจางเข้า ไม่ซูม
     slides.forEach(function (s, i) {
       var b = document.createElement('button');
       b.type = 'button';
@@ -40,10 +40,17 @@ var COUNT_SECONDS = 1.6;    // ตัวเลขวิ่งนานกี่�
 
   // ---------- 2) ปรากฏตอนเลื่อนลงมาถึง ----------
   var REVEAL = '.section h2, .section .lead, .card, .ticks li, .fleet-group, .timeline li, .figure, .contact-list li, .form, .fleet-total';
-  if (hasIO && !reduce) {
+  if (hasIO) {   // โหมดลดการเคลื่อนไหว: ยังจางเข้า แต่ไม่ขยับ (ดู animations.css)
+    // ปรากฏเสร็จแล้ว → เอาคลาสออก ให้การ์ดกลับไปใช้ลูกเล่นชี้เมาส์ตามปกติ (ไม่หน่วง)
+    function settle(el) {
+      setTimeout(function () {
+        el.classList.remove('reveal', 'is-visible');
+        el.style.transitionDelay = '';
+      }, 1100);
+    }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); settle(en.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll(REVEAL).forEach(function (el, i) {
@@ -51,12 +58,28 @@ var COUNT_SECONDS = 1.6;    // ตัวเลขวิ่งนานกี่�
       el.style.transitionDelay = ((i % 4) * 90) + 'ms';
       io.observe(el);
     });
+
+    // กันพลาด: เลื่อนจอเร็วมากจนข้ามไป หรือเพิ่งสลับภาษา → แสดงทุกอันที่เลื่อนผ่านมาแล้ว
+    var pending = false;
+    function catchUp() {
+      pending = false;
+      var vh = window.innerHeight;
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach(function (el) {
+        if (el.offsetParent === null) return;               // ซ่อนอยู่ (ข้อความอีกภาษา)
+        if (el.getBoundingClientRect().top < vh) { el.classList.add('is-visible'); io.unobserve(el); settle(el); }
+      });
+    }
+    function queue() { if (!pending) { pending = true; requestAnimationFrame(catchUp); } }
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    document.addEventListener('click', function (e) { if (e.target.closest('.lang-btn')) setTimeout(queue, 30); });
+    window.addEventListener('pageshow', queue);   // กลับมาหน้าเดิมด้วยปุ่มย้อนกลับ
   }
 
   // ---------- 3) ตัวเลขวิ่ง (ใส่ data-count="ตัวเลข" ที่ตัวเลขไหนก็ได้) ----------
   function runCount(el) {
     var target = parseInt(el.getAttribute('data-count'), 10);
-    if (isNaN(target) || reduce) { return; }
+    if (isNaN(target)) { return; }   // ตัวเลขวิ่งได้ทุกโหมด (ไม่ใช่การขยับหน้าจอ)
     var t0 = null;
     function step(t) {
       if (!t0) t0 = t;

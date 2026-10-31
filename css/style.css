@@ -219,3 +219,6 @@ p { margin: 0; }
 .team .card-body p { font-size: 15px; }
 /* หัวข้อหน้าแรก: ภาษาลาวขึ้นบรรทัดละวลี ไม่ตัดกลางคำ */
 .hero h1 .line { display: block; white-space: nowrap; }
+/* ผู้บริหาร: รูปแนวตั้ง 4:5 การ์ดไม่กว้างเกินไป */
+.team { grid-template-columns: repeat(auto-fit, minmax(220px, 300px)); }
+.card .person-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; background: var(--concrete); border-bottom: 5px solid var(--orange); }

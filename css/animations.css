@@ -1,6 +1,7 @@
 /* =========================================================
    animations.css — ลูกเล่นและแอนิเมชันทั้งหมด
-   อยากปิดลูกเล่นไหน ลบหรือใส่ /* */ ครอบส่วนนั้น
+   อยากปิดลูกเล่นไหน ให้ลบส่วนนั้นออก
+   (ห้ามเขียนเครื่องหมายเปิด-ปิดคอมเมนต์ซ้อนในคอมเมนต์ จะทำให้กฎข้อแรกพัง)
    ========================================================= */
 
 /* ---------- 1) ข้อความหน้าแรกค่อยๆ ขึ้นมาตอนเปิดเว็บ ---------- */
@@ -46,6 +47,8 @@
 .card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .card:hover { transform: translateY(-6px); box-shadow: 0 16px 32px rgba(11, 42, 85, 0.16); }
 .card img { transition: transform 0.6s ease; }
+/* การ์ดตอนกำลังปรากฏ: ต้องมี opacity ด้วย ไม่งั้นการ์ดจะโผล่มาเฉยๆ ไม่จางเข้า */
+.card.reveal { transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.3s ease; }
 .card:hover img { transform: scale(1.06); }
 .btn { transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
 .btn:hover { transform: translateY(-2px); }
@@ -79,11 +82,14 @@
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
-/* ---------- ปิดการเคลื่อนไหว ถ้าผู้ใช้ตั้งค่าเครื่องให้ลดการเคลื่อนไหว ---------- */
+/* ---------- เครื่องที่ตั้ง "ลดการเคลื่อนไหว" ----------
+   บางเครื่องเปิดเองตอนโหมดประหยัดแบตเตอรี่ (เช่น Android บางรุ่น) หรือในการตั้งค่าการช่วยเหลือ
+   โหมดนี้ยังมีลูกเล่นแบบค่อยๆ จางเข้า แต่ไม่ขยับ ไม่ซูม ไม่เลื่อน */
+@keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-text > *, .facts, .hero-slides .slide.active, .road::before, .fc-phone, .lightbox.open { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .card, .card img, .btn { transition: none; }
+  .hero-text > *, .facts { animation-name: hero-fade; }
+  .hero-slides .slide.active, .road::before, .fc-phone { animation: none; }
+  .reveal, .card.reveal { transform: none; transition: opacity 0.7s ease; }
   .card:hover, .card:hover img, .btn:hover { transform: none; }
   .marquee { -webkit-mask-image: none; mask-image: none; }
   .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
