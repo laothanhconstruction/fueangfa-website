@@ -1,0 +1,60 @@
+/* =========================================================
+   quote-pdf.css
+   ส่วน 1: หน้าต่างขั้นตอนส่ง (.qd)
+   ส่วน 2: หน้าตาเอกสาร PDF ใบขอใบเสนอราคา (.qdoc) — ขนาด A4
+   ========================================================= */
+
+/* ---------- 1) หน้าต่างขั้นตอนส่ง ---------- */
+.qd { position: fixed; inset: 0; z-index: 130; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(7, 28, 58, 0.88); }
+.qd.open { display: flex; }
+.qd-panel { position: relative; width: min(560px, 100%); max-height: calc(100vh - 40px); overflow-y: auto; background: var(--white); border-top: 6px solid var(--orange); border-radius: var(--radius); padding: 32px 28px 28px; }
+.qd-close { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--navy); color: var(--white); font-size: 24px; cursor: pointer; }
+.qd-h { font-size: 26px; padding-right: 48px; }
+.qd-ref { margin-top: 6px; font-family: "Overpass", sans-serif; font-size: 14px; color: var(--muted); }
+.qd-steps { list-style: none; counter-reset: s; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.qd-steps li { counter-increment: s; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); }
+.qd-steps li > div { flex: 1 1 220px; display: flex; flex-direction: column; padding-left: 42px; position: relative; }
+.qd-steps li > div::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: var(--navy-dark); font: 800 16px/30px "Overpass", sans-serif; text-align: center; }
+.qd-steps small { color: var(--muted); font-size: 14px; }
+.qd-preview { display: inline-block; margin-top: 18px; font-weight: 700; }
+.qd-loading { display: flex; align-items: center; gap: 14px; padding: 24px 0; font-size: 18px; font-weight: 700; }
+.qd-spin { width: 28px; height: 28px; border-radius: 50%; border: 4px solid var(--concrete); border-top-color: var(--orange); animation: qd-spin 0.8s linear infinite; }
+@keyframes qd-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .qd-spin { animation-duration: 2.4s; } }
+.form-note { font-size: 14px; color: var(--muted); margin: 0; }
+
+/* ---------- 2) เอกสาร PDF (ซ่อนไว้นอกจอตอนสร้าง) ---------- */
+.qdoc-holder { position: fixed; left: -10000px; top: 0; }
+.qdoc {
+  width: 794px; min-height: 1123px; box-sizing: border-box; padding: 0 0 70px; position: relative;
+  background: #FFFFFF; color: #14202E; font-family: "Noto Sans Lao", "Overpass", sans-serif; font-size: 14px; line-height: 1.55;
+}
+.qdoc-head { display: flex; align-items: center; gap: 22px; padding: 24px 48px 18px; border-bottom: 4px solid #F28C28; }
+.qdoc-head img { width: 96px; height: auto; }
+.qdoc-co { display: flex; flex-direction: column; }
+.qdoc-co b { font-size: 19px; color: #0B2A55; line-height: 1.4; }
+.qdoc-co span { font-family: "Overpass", sans-serif; font-weight: 700; font-size: 14px; color: #0B2A55; }
+.qdoc-co small { font-size: 12px; color: #4A5A6E; margin-top: 4px; line-height: 1.5; }
+.qdoc-title { display: flex; justify-content: space-between; align-items: center; gap: 24px; background: #0B2A55; color: #FFFFFF; padding: 14px 48px; }
+.qdoc-title h1 { margin: 0; font-size: 28px; font-weight: 800; line-height: 1.4; }
+.qdoc-title p { margin: 0; font-family: "Overpass", sans-serif; font-size: 15px; color: #C8D4E4; }
+.qdoc-ref { border-collapse: collapse; font-size: 13px; }
+.qdoc-ref th { text-align: left; font-weight: 500; color: #C8D4E4; padding: 3px 14px 3px 0; }
+.qdoc-ref td { font-family: "Overpass", sans-serif; font-weight: 700; padding: 3px 0; }
+.qdoc h2 { margin: 18px 48px 8px; font-size: 17px; color: #0B2A55; }
+.qdoc h2 span { color: #F28C28; font-family: "Overpass", sans-serif; font-weight: 900; margin-right: 6px; }
+.qdoc h2 small { font-family: "Overpass", sans-serif; font-size: 13px; font-weight: 600; color: #4A5A6E; }
+.qdoc-table { width: calc(100% - 96px); margin: 0 48px; border-collapse: collapse; }
+.qdoc-table th, .qdoc-table td { border: 1px solid #D3D9E0; padding: 5px 12px; vertical-align: top; text-align: left; }
+.qdoc-table th { width: 34%; background: #EEF0F2; font-weight: 400; }
+.qdoc-table th b { display: block; font-size: 13px; }
+.qdoc-table th small { display: block; font-family: "Overpass", sans-serif; font-size: 11px; color: #4A5A6E; }
+.qdoc-table td { font-size: 14px; font-weight: 700; }
+.qdoc-line { height: 26px; }
+.qdoc-empty { color: #9AA8B8; font-weight: 400; }
+.qdoc-box { margin: 12px 48px 0; border: 1px solid #D3D9E0; padding: 8px 12px; min-height: 96px; }
+.qdoc-box b { font-size: 13px; }
+.qdoc-box small { font-family: "Overpass", sans-serif; font-size: 11px; color: #4A5A6E; }
+.qdoc-box p { margin: 6px 0 0; white-space: pre-wrap; font-size: 14px; }
+.qdoc-note { margin: 16px 48px 0; font-size: 11px; color: #4A5A6E; }
+.qdoc-foot { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: space-between; gap: 16px; padding: 16px 48px; background: #071C3A; color: #C8D4E4; font-size: 12px; border-top: 6px solid #F28C28; }

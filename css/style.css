@@ -215,3 +215,7 @@ p { margin: 0; }
 .quote-text { font-weight: 700; color: var(--navy); }
 .note { font-size: 15px; color: var(--muted); margin-top: 24px; }
 .map-box { margin-top: 28px; height: 240px; }
+.team { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.team .card-body p { font-size: 15px; }
+/* หัวข้อหน้าแรก: ภาษาลาวขึ้นบรรทัดละวลี ไม่ตัดกลางคำ */
+.hero h1 .line { display: block; white-space: nowrap; }
