@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;700;800;900&amp;family=Overpass:wght@400;600;700;800;900&amp;display=swap">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/quote-pdf.css">
 </head>
 <body>
 <!-- ===== หัวเว็บ (เหมือนกันทุกหน้า) ===== -->
@@ -55,23 +56,26 @@
         <li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0B2A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><div><small><span class="lo">ໂທລະສັບ</span><span class="en">Phone</span></small><a href="tel:+8562097929002">020 9792 9002</a></div></li>
         <li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0B2A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.2-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><div><small>WhatsApp</small><a href="https://wa.me/8562097929002" target="_blank" rel="noopener">020 9792 9002</a></div></li>
         <li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0B2A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><small><span class="lo">ອີເມວ</span><span class="en">Email</span></small><a href="mailto:laothanhconstruction@gmail.com">laothanhconstruction@gmail.com</a></div></li>
-        <li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0B2A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><div><small><span class="lo">ທີ່ຢູ່</span><span class="en">Address</span></small><span class="lo">ບ້ານ [ຊື່ບ້ານ], ເມືອງໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ</span><span class="en">[Village], Xaysetha District, Vientiane Capital, Laos</span></div></li>
+        <li><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#0B2A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><div><small><span class="lo">ທີ່ຢູ່</span><span class="en">Address</span></small><span class="lo">ບ້ານໜອງປິງ, ເມືອງສີໂຄດຕະບອງ, ນະຄອນຫຼວງວຽງຈັນ</span><span class="en">Nongping Village, Sykhottabong District, Vientiane Capital, Laos</span></div></li>
       </ul>
       <!-- แผนที่: เปิด Google Maps > แชร์ > ฝังแผนที่ แล้วเอาโค้ด <iframe> มาวางแทน <div class="placeholder map-box"> ข้างล่างนี้ -->
       <div class="placeholder map-box"><span class="lo">ແຜນທີ່ Google Maps</span><span class="en">Google Maps</span></div>
     </div>
     <form class="form" id="quote-form">
       <h2 class="lo">ຂໍໃບສະເໜີລາຄາ</h2><h2 class="en">Request a quote</h2>
-      <p class="lo note">ກອກຂໍ້ມູນໂຄງການ ແລ້ວກົດສົ່ງ, ຂໍ້ຄວາມຈະເປີດໃນ WhatsApp ເພື່ອສົ່ງຫາພວກເຮົາໂດຍກົງ.</p><p class="en note">Fill in your project details and tap send. The message opens in WhatsApp so it comes straight to us.</p>
+      <p class="lo note">ກອກຂໍ້ມູນໂຄງການ ແລ້ວກົດປຸ່ມ. ເວັບຈະສ້າງເອກະສານ PDF ໃບຂໍໃບສະເໜີລາຄາໃຫ້ ເພື່ອສົ່ງຫາພວກເຮົາທາງ WhatsApp.</p><p class="en note">Fill in your project details and tap the button. We’ll create a PDF request for quotation for you to send us on WhatsApp.</p>
       <div class="form-grid">
         <div class="field"><label for="q-name"><span class="lo">ຊື່ ແລະ ນາມສະກຸນ</span><span class="en">Full name</span></label><input id="q-name" type="text" autocomplete="name" required></div>
         <div class="field"><label for="q-org"><span class="lo">ບໍລິສັດ ຫຼື ອົງກອນ</span><span class="en">Company or organization</span></label><input id="q-org" type="text" autocomplete="organization"></div>
         <div class="field"><label for="q-phone"><span class="lo">ເບີໂທລະສັບ</span><span class="en">Phone number</span></label><input id="q-phone" type="tel" autocomplete="tel" required></div>
-        <div class="field"><label for="q-kind"><span class="lo">ປະເພດວຽກ</span><span class="en">Type of work</span></label><select id="q-kind"><option value="">—</option><option>ຖະໜົນ / Road</option><option>ຂົວ / Bridge</option><option>ເຊົ່າເຄື່ອງຈັກ / Equipment rental</option><option>ກໍ່ສ້າງ, ວຽກໂຍທາ / Construction, civil works</option><option>ອອກແບບ / Design</option><option>ອື່ນໆ / Other</option></select></div>
+        <div class="field"><label for="q-email"><span class="lo">ອີເມວ</span><span class="en">Email</span></label><input id="q-email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="q-kind"><span class="lo">ປະເພດວຽກ</span><span class="en">Type of work</span></label><select id="q-kind"><option value="">—</option><option>ຖະໜົນ / Road</option><option>ຂົວ / Bridge</option><option>ເຊົ່າອຸປະກອນກົນຈັກໜັກ / Equipment rental</option><option>ກໍ່ສ້າງ, ວຽກໂຍທາ / Construction, civil works</option><option>ອອກແບບ / Design</option><option>ອື່ນໆ / Other</option></select></div>
+        <div class="field"><label for="q-start"><span class="lo">ວັນທີຕ້ອງການເລີ່ມ</span><span class="en">Preferred start date</span></label><input id="q-start" type="date" ></div>
       </div>
       <div class="field"><label for="q-place"><span class="lo">ສະຖານທີ່ໂຄງການ</span><span class="en">Project location</span></label><input id="q-place" type="text" ></div>
       <div class="field"><label for="q-details"><span class="lo">ລາຍລະອຽດໂຄງການ</span><span class="en">Project details</span></label><textarea id="q-details" rows="5"></textarea></div>
-      <button class="btn btn-navy" type="submit" style="align-self: flex-start; cursor: pointer"><span class="lo">ສົ່ງຜ່ານ WhatsApp</span><span class="en">Send via WhatsApp</span></button>
+      <button class="btn btn-navy" type="submit" style="align-self: flex-start; cursor: pointer"><span class="lo">ສ້າງເອກະສານ PDF ແລະ ສົ່ງ</span><span class="en">Create PDF and send</span></button>
+      <p class="lo form-note">ຊ່ອງທີ່ຕ້ອງກອກ: ຊື່ ແລະ ເບີໂທລະສັບ</p><p class="en form-note">Required: name and phone number</p>
     </form>
   </div>
 </section>
@@ -99,7 +103,7 @@
     <div>
       <h3><span class="lo">ຕິດຕໍ່</span><span class="en">Contact</span></h3>
       <ul>
-        <li><span class="lo">ບ້ານ [ຊື່ບ້ານ], ເມືອງໄຊເສດຖາ, ນະຄອນຫຼວງວຽງຈັນ</span><span class="en">[Village], Xaysetha District, Vientiane Capital, Laos</span></li>
+        <li><span class="lo">ບ້ານໜອງປິງ, ເມືອງສີໂຄດຕະບອງ, ນະຄອນຫຼວງວຽງຈັນ</span><span class="en">Nongping Village, Sykhottabong District, Vientiane Capital, Laos</span></li>
         <li><a href="tel:+8562097929002">020 9792 9002</a> (WhatsApp)</li>
         <li><a href="mailto:laothanhconstruction@gmail.com">laothanhconstruction@gmail.com</a></li>
       </ul>
@@ -123,5 +127,8 @@
 
 <script src="js/main.js"></script>
 <script src="js/animations.js"></script>
+<script src="js/vendor/html2canvas.min.js"></script>
+<script src="js/vendor/jspdf.umd.min.js"></script>
+<script src="js/quote-pdf.js"></script>
 </body>
 </html>
